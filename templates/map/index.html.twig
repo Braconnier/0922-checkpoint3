@@ -1,44 +1,33 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-	<div
-		class="container-fluid">
+	<div class="container-fluid">
 		<h1>
 			Map
 		</h1>
-		<div
-			class="row">
-			<div
-				class="col-md-10">
-				<div
-					class="map">
+		<div class="row">
+			<div class="col-md-10">
+				<div class="map">
 					{% if map is empty %}
-						<div
-							class="alert alert-warning">
+						<div class="alert alert-warning">
 							You are still on the firm ground, you have to load fixtures first !
 						</div>
 					{% endif %}
 					{% for y in 0..6 %}
-						<div
-							class="row">
+						<div class="row">
 							{% for x in 0..12 %}
 								{% if map[x][y] is defined %}
-									<div
-										class="tile col-1 {{ map[x][y].type }}">
-										<div
-											class="tile-name">
+									<div class="tile col-1 {{ map[x][y].type }}">
+										<div class="tile-name">
 											{{ map[x][y].name ?? ' '}}
 										</div>
-										<div
-											class="tile-name coords">
+										<div class="tile-name coords">
 											{{ map[x][y].coordX }}
 											,
 											{{ map[x][y].coordY }}
 										</div>
 										{% if boat.coordX == x and boat.coordY == y %}
-											<img
-												class="boat img-fluid"
-												src="{{ asset('build/images/boat.png') }}" alt="boat"/>
+											<img class="boat img-fluid" src="{{ asset('build/images/boat.png') }}" alt="boat"/>
 										{% endif %}
 									</div>
 								{% endif %}
@@ -47,21 +36,48 @@
 					{% endfor %}
 				</div>
 			</div>
-			<div
-				class="col-md-2">
-				<div
-					class="infos">
+			<div class="col-md-2">
+				<div class="infos">
 					<h2>
 						Information
 					</h2>
 					{# Add here informations about current ship position #}
+					<div>
+						<h1>Boat :
+							{{boat.name}}</h1>
+						<div>
+							<h2>Coords X :
+								{{boat.coordX}}</h2>
+						</div>
+						<h2>Coords Y :
+							{{boat.coordY}}</h2>
+					</div>
 				</div>
-				<div
-					class="navigation">
+				<div class="navigation">
 					<h2>
 						Navigation
 					</h2>
 					{# Add here N/S/E/W buttons #}
+					<div class="directions">
+						<div class="north">
+							<a href="{{path('boatDirection', {direction: 'N'})}}">
+								<h3>N</h3>
+							</a>
+						</div>
+						<div class="west east">
+							<a href="{{path('boatDirection', {direction: 'W'})}}">
+								<h3>W</h3>
+							</a>
+							<a href="{{path('boatDirection', {direction: 'E'})}}">
+								<h3>E</h3>
+							</a>
+						</div>
+						<div class="south">
+							<a href="{{path('boatDirection', {direction: 'S'})}}">
+								<h3>S</h3>
+							</a>
+						</div>S
+					</div>
 				</div>
 			</div>
 		</div>

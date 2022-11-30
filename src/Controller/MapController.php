@@ -15,7 +15,7 @@ class MapController extends AbstractController
     public function displayMap(BoatRepository $boatRepository, TileRepository $tileRepository): Response
     {
         $tiles = $tileRepository->findAll();
-
+        // dd($tiles);
         foreach ($tiles as $tile) {
             $map[$tile->getCoordX()][$tile->getCoordY()] = $tile;
         }
