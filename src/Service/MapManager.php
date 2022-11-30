@@ -16,4 +16,9 @@ class MapManager
         $tile = $this->tileRepository->findOneBy(['coordX' => $x, 'coordY' => $y]);
         return ($tile) ? true : false;
     }
+    public function getRandomIsland(): array
+    {
+        $islandTiles = $this->tileRepository->findBy(['type' => 'island']);
+        return $islandTiles;
+    }
 }

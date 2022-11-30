@@ -38,6 +38,7 @@ class BoatController extends AbstractController
         } else {
             $this->addFlash('warning', 'The sea map isn\'t that big !');
         }
+
         return $this->redirectToRoute("map");
     }
 }
