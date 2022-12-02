@@ -19,6 +19,16 @@ class BoatRepository extends ServiceEntityRepository
         parent::__construct($registry, Boat::class);
     }
 
+
+    public function save(Boat $entity, bool $flush = false): void
+    {
+        $this->getEntityManager()->persist($entity);
+
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
+    }
+
     // /**
     //  * @return Boat[] Returns an array of Boat objects
     //  */

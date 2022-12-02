@@ -93,7 +93,6 @@ class Tile
     public function setHasTreasure($hasTreasure): self
     {
         $this->hasTreasure = $hasTreasure;
-
         return $this;
     }
 }
