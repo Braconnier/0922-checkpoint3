@@ -13,12 +13,12 @@ use Symfony\Component\Routing\Annotation\Route;
 class BoatController extends AbstractController
 {
     #[Route('/move/{x}/{y}', name: 'moveBoat', requirements: ['x' => '\d+', 'y' => '\d+'])]
-    public function moveBoat(int $x, int $y, BoatRepository $boatRepository, EntityManagerInterface $em): Response
+    public function moveBoat(int $x, int $y, BoatRepository $boatRepository): Response
     {
         $boat = $boatRepository->findOneBy([]);
         $boat->setCoordX($x);
         $boat->setCoordY($y);
-        $em->flush();
+        $boatRepository->save($boat, true);
         return $this->redirectToRoute('map');
     }
 
