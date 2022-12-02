@@ -2,14 +2,12 @@
 
 namespace App\Controller;
 
-use App\Entity\Tile;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\BoatRepository;
 use App\Repository\TileRepository;
 use App\Service\MapManager;
-use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 
 class MapController extends AbstractController
@@ -45,8 +43,8 @@ class MapController extends AbstractController
         $boat->setCoordY(0);
         $em->flush();
         $mapManager->resetTreasure();
-        $setRandomTreasure = $mapManager->getRandomIsland();
-        $setRandomTreasure->setHasTreasure(true);
+        $setRandomTreasure = $mapManager->getRandomIsland()
+            ->setHasTreasure(true);
         $em->persist($setRandomTreasure);
         $em->flush();
 
